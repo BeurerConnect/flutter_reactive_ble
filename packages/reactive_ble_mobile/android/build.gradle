@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     ext.detekt_version = '1.23.0'
-    ext.kotlin_version = '1.8.21'
+    ext.kotlin_version = '2.4.10'
     repositories {
         google()
         mavenCentral()
@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:9.3.1'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_version"
@@ -33,12 +33,11 @@ rootProject.allprojects {
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.google.protobuf'
-apply plugin: 'kotlin-android'
 apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: "de.mannodermaus.android-junit5"
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 37
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
@@ -51,7 +50,7 @@ android {
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 37
         consumerProguardFiles 'proguard-rules.txt'
     }
 
@@ -62,12 +61,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+}
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
 
