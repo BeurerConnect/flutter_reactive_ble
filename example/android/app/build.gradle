@@ -39,7 +39,7 @@ android {
 
     defaultConfig {
         applicationId "com.signify.hue.reactivebleexample"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion 37
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
